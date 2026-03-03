@@ -51,7 +51,7 @@ if st.button("Ask AI"):
 
             response = requests.post(
                 f"{Base_url}/query",
-                data=question
+                json=question
             )
 
             if response.status_code == 200:
