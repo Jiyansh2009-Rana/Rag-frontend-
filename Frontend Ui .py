@@ -36,34 +36,36 @@ st.header("💬 Ask Your Qusention Related Data And Other what you want 🌐")
 
 sys_prompt = st.text_area("Enter your System Prompt Here (What Should be  Work LLM ? ) ")
 
-user_query = st.text_input ("Enter your Question Here")
+user_query = st.text_input("Enter your Question Here")
 
-if st.button("Ask Ai"):
-    if not user_qurey:
-        st.warning(" Please Enter Your Question")
+if st.button("Ask AI"):
+    if not user_query:
+        st.warning("Please enter your question.")
     else:
-        with st.spinner("Searching and generating answer.."):
-            
-            Question = {
+        with st.spinner("Searching and generating answer..."):
+
+            question = {
                 "system_prompt": sys_prompt,
                 "user_query": user_query
             }
-            
-            response = requests.post(f"{Base_url}/query",data = Question )
-            
+
+            response = requests.post(
+                f"{Base_url}/query",
+                json=question
+            )
+
             if response.status_code == 200:
                 result = response.json()
-                
+
                 st.subheader("Answer:")
                 st.write(result.get("answer"))
-                
-                
-                with st.expander("View Related Content "):
+
+                with st.expander("View Related Content"):
                     related = result.get("sources", [])
-                    if related :
-                        for related in set(related):
-                            st.info(f"Related Content : {related}")
-                    else :
-                        st.write("No Specific content Found ")
-            else :
-                st.error(f"Error {response.text}")
+                    if related:
+                        for item in set(related):
+                            st.info(f"Related Content: {item}")
+                    else:
+                        st.write("No specific content found.")
+            else:
+                st.error(f"Error: {response.text}")
