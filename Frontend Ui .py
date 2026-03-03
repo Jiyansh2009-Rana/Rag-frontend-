@@ -34,7 +34,7 @@ with st.sidebar:
 
 st.header("💬 Ask Your Qusention Related Data And Other what you want 🌐")
 
-sys_prompt = st.text_area("Enter your System Prompt Here (What Should be  Work LLM ? ) ")
+sys_prompt = st.text_area("Enter your System Prompt Here (What Should be  Work LLM ? )",value = "Answer accrding to the PDF.")
 
 user_query = st.text_input("Enter your Question Here")
 
