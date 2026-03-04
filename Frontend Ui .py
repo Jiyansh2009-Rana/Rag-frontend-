@@ -38,6 +38,11 @@ sys_prompt = st.text_area("Enter your System Prompt Here (What Should be  Work L
 
 user_query = st.text_input("Enter your Question Here")
 
+language = st.selectbox(
+    "Select Answer Language",
+    ["English", "Hindi", "French", "German", "Italian"]
+)
+
 if st.button("Ask AI"):
     if not user_query:
         st.warning("Please enter your question.")
@@ -46,7 +51,8 @@ if st.button("Ask AI"):
 
             question = {
                 "system_prompt": sys_prompt,
-                "user_query": user_query
+                "user_query": user_query,
+                "language": language
             }
 
             response = requests.post(
