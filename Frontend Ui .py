@@ -56,7 +56,7 @@ if st.button("Ask AI"):
             }
 
             response = requests.post(
-                f"{Base_url}/query",
+                f"{Base_url}/Query",
                 json=question
             )
 
