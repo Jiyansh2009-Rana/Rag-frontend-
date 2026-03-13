@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-
+import mime types
 
 Base_url = "https://rag-backend-kpyv.vercel.app"
 
@@ -13,13 +13,15 @@ st.markdown ("Power By Groq llm As a llm ,,  Jina-embeddings-v3 As a Embedding  
 
 with st.sidebar:
     st.header ("Upload Data In format 'Pdf' ")
-    uploaded_file = st.file_uploader ("Choose your Pdf Data", type = "pdf")
+    uploaded_file = st.file_uploader ("Choose your Pdf Data", type = "pdf","csv","xlsx","txt","docx")
+    
+    mime_type= mimetypes.guess_type(uploaded_file.name)
     
     if st.button ("upload your Data"):
         if uploaded_file is not None:
             with st.spinner ("proceesing pdf..."):
                 files = {
-                            "file" : (uploaded_file.name, uploaded_file.getvalue(), "application/pdf")
+                            "file" : (uploaded_file.name, uploaded_file.getvalue(), mime_type)
                             }
                            
                 response = requests.post(f"{Base_url}/upload", files = files)
@@ -34,7 +36,7 @@ with st.sidebar:
 
 st.header("💬 Ask Your Qusention Related Data And Other what you want 🌐")
 
-sys_prompt = st.text_area("Enter your System Prompt Here (What Should be  Work LLM ? )",value = "Answer accrding to the PDF.")
+sys_prompt = st.text_area("Enter your System Prompt Here (What Should be  Work LLM ? )",value = "Answer Accrding To The PDF If Answer Is Not Avalible In DB So Find On Authencat Soures Of Internet Or Resoures")
 
 user_query = st.text_input("Enter your Question Here")
 
