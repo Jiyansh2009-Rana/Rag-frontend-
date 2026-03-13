@@ -1,7 +1,6 @@
 import streamlit as st
 import requests
-import mime types
-
+import mimetypes
 Base_url = "https://rag-backend-kpyv.vercel.app"
 
 st.set_page_config (page_title = "Rag Based llm for (pdf Data)",layout = "wide")
@@ -13,9 +12,9 @@ st.markdown ("Power By Groq llm As a llm ,,  Jina-embeddings-v3 As a Embedding  
 
 with st.sidebar:
     st.header ("Upload Data In format 'Pdf' ")
-    uploaded_file = st.file_uploader ("Choose your Pdf Data", type = "pdf","csv","xlsx","txt","docx")
+    uploaded_file = st.file_uploader ("Choose your Pdf Data", type =[ "pdf","csv","xlsx","txt","docx"])
     
-    mime_type= mimetypes.guess_type(uploaded_file.name)
+    mime_type, _= mimetypes.guess_type(uploaded_file.name)
     
     if st.button ("upload your Data"):
         if uploaded_file is not None:
