@@ -20,7 +20,10 @@ with st.sidebar:
         if uploaded_file is not None:
             with st.spinner ("proceesing pdf..."):
                 files = {
-                            "file" : (uploaded_file.name, uploaded_file.getvalue(), mime_type)
+                            "file" : (
+                            uploaded_file.name,
+                             uploaded_file.getvalue(),                                 mime_type
+                             )
                             }
                            
                 response = requests.post(f"{Base_url}/upload", files = files)
