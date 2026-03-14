@@ -13,7 +13,7 @@ st.markdown ("Power By Groq llm As a llm ,,  Jina-embeddings-v3 As a Embedding  
 
 with st.sidebar:
     st.header ("Upload Data In format 'Pdf' ")
-    uploaded_file = st.file_uploader ("Choose your Pdf Data", type = "pdf","csv","xlsx","txt","docx")
+    uploaded_file = st.file_uploader ("Choose your Pdf Data", type = ["pdf","csv","xlsx","txt","docx"])
     
     mime_type= mimetypes.guess_type(uploaded_file.name)
     
