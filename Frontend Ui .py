@@ -15,7 +15,7 @@ with st.sidebar:
     st.header ("Upload Data In format 'Pdf' ")
     uploaded_file = st.file_uploader ("Choose your Pdf Data", type = ["pdf","csv","xlsx","txt","docx"])
     
-    mime_type= mimetypes.guess_type(uploaded_file.name)
+   
     
     if st.button ("upload your Data"):
         if uploaded_file is not None:
