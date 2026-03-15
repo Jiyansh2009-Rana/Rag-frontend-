@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import mimetypes
 
-Base_url = "https://rag-backend-kpyv.vercel.app"
+Base_url = "https://rag-backend-gamma.vercel.app"
 
 st.set_page_config (page_title = "Rag Based llm for (pdf Data)",layout = "wide")
 
