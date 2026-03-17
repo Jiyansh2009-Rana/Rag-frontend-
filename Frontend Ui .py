@@ -1,6 +1,8 @@
 import streamlit as st
 import requests
 import mimetypes
+import base64
+
 
 Base_url = "https://rag-backend-gamma.vercel.app"
 
@@ -47,6 +49,8 @@ language = st.selectbox(
     ["English", "Hindi", "French", "German", "Italian"]
 )
 
+speak = st.toggle("🔊 Speak ", value=False)
+
 if st.button("Ask AI"):
     if not user_query:
         st.warning("Please enter your question.")
@@ -56,7 +60,9 @@ if st.button("Ask AI"):
             question = {
                 "system_prompt": sys_prompt,
                 "user_query": user_query,
-                "language": language
+                "language": language,
+                "speak": speak
+                
             }
 
             response = requests.post(
@@ -69,6 +75,11 @@ if st.button("Ask AI"):
 
                 st.subheader("Answer:")
                 st.write(result.get("answer"))
+                
+                audio_data = result.get("audio")
+                if audio_data:
+                    audio_bytes = base64.                b64decode(audio_data)
+                    st.audio(audio_bytes, format="audio/mp3")
 
                 with st.expander("View Related Content"):
                     related = result.get("sources", [])
