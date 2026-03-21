@@ -51,6 +51,7 @@ language = st.selectbox(
 
 speak = st.toggle("🔊 Speak ", value=False)
 
+response = None 
 
 if st.button("Ask AI"):
     if not user_query:
