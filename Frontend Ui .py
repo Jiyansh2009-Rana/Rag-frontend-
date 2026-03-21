@@ -4,7 +4,7 @@ import mimetypes
 import base64
 
 
-Base_url = "https://rag-backend-gamma.vercel.app"
+Base_url = "https://rag-backend-kpyv.vercel.app"
 
 st.set_page_config (page_title = "Rag Based llm for (pdf Data)",layout = "wide")
 
@@ -51,6 +51,7 @@ language = st.selectbox(
 
 speak = st.toggle("🔊 Speak ", value=False)
 
+
 if st.button("Ask AI"):
     if not user_query:
         st.warning("Please enter your question.")
@@ -61,7 +62,8 @@ if st.button("Ask AI"):
                 "system_prompt": sys_prompt,
                 "user_query": user_query,
                 "language": language,
-                "speak": speak
+                "speak":speak
+                
                 
             }
 
@@ -72,21 +74,25 @@ if st.button("Ask AI"):
 
             if response.status_code == 200:
                 result = response.json()
-
-                st.subheader("Answer:")
+                
+                st.subheader("Answer:")  
                 st.write(result.get("answer"))
                 
                 audio_data = result.get("audio")
+                
                 if audio_data:
-                    audio_bytes = base64.                b64decode(audio_data)
-                    st.audio(audio_bytes, format="audio/mp3")
+                      
+                      audio_bytes = base64.b64decode(audio_data)  
+                      
+                      st.audio(audio_bytes, format="audio/mp3")
 
-                with st.expander("View Related Content"):
-                    related = result.get("sources", [])
-                    if related:
-                        for item in set(related):
-                            st.info(f"Related Content: {item}")
-                    else:
-                        st.write("No specific content found.")
-            else:
-                st.error(f"Error: {response.text}")
+    
+    with st.expander("View Related Content"):  
+                related = result.get("sources", [])  
+                if related:  
+                    for item in set(related):  
+                        st.info(f"Related Content: {item}")  
+                else:  
+                    st.write("No specific content found.")  
+        else:  
+            st.error(f"Error: {response.text}")
