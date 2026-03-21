@@ -87,12 +87,14 @@ if st.button("Ask AI"):
                       st.audio(audio_bytes, format="audio/mp3")
 
     
-    with st.expander("View Related Content"):  
-                related = result.get("sources", [])  
-                if related:  
-                    for item in set(related):  
-                        st.info(f"Related Content: {item}")  
-                else:  
+                with st.expander("View Related Content"):
+                      
+                    related = result.get("sources", [])  
+                    if related:  
+                        for item in set(related):  
+                            st.info(f"Related Content: {item}")  
+                    else:  
                     st.write("No specific content found.")  
-else:  
-            st.error(f"Error: {response.text}")
+            else:
+                  
+                st.error(f"Error: {response.text}")
