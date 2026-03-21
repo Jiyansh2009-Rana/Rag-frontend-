@@ -94,5 +94,5 @@ if st.button("Ask AI"):
                         st.info(f"Related Content: {item}")  
                 else:  
                     st.write("No specific content found.")  
-        else:  
+else:  
             st.error(f"Error: {response.text}")
