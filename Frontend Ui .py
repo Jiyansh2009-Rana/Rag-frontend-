@@ -4,7 +4,7 @@ import mimetypes
 import base64
 
 
-Base_url = "https://rag-backend-kpyv.vercel.app"
+Base_url = "https://rag-backend-production-6012.up.railway.app"
 
 st.set_page_config (page_title = "Rag Based llm for (pdf Data)",layout = "wide")
 
