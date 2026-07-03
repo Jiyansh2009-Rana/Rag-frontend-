@@ -4,7 +4,7 @@ import mimetypes
 import base64
 
 
-Base_url = "http://150.230.239.189:8080/docs"
+Base_url = "http://150.230.239.189:8080"
 
 st.set_page_config (page_title = "Rag Based llm for (pdf Data)",layout = "wide")
 
